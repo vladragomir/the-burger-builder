@@ -4,10 +4,10 @@ import Modal from '../../components/UI/Modal/Modal';
 import Aux from '../Auxiliary/Auxiliary';
 import useHttpErrorHandler from '../../hooks/http-error-handler';
 
-const WithErrorHandler = (WrappedComponent, axios) => {
-  const [error, errorConfirmedHandler] = useHttpErrorHandler(axios);
+const withErrorHandler = (WrappedComponent, axios) => {
+  const WithErrorHandler = (props) => {
+    const [error, errorConfirmedHandler] = useHttpErrorHandler(axios);
 
-  return (props) => {
     return (
       <Aux>
         <Modal show={error} modalClosed={errorConfirmedHandler}>
@@ -17,6 +17,7 @@ const WithErrorHandler = (WrappedComponent, axios) => {
       </Aux>
     );
   };
+  return WithErrorHandler;
 };
 
-export default WithErrorHandler;
+export default withErrorHandler;
